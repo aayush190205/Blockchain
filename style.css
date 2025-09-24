@@ -1,0 +1,166 @@
+/* --- Professional Redesign for Certificate dApp --- */
+:root {
+    --primary-color: #007bff;
+    --primary-hover: #0056b3;
+    --background-color: #f4f7f6;
+    --card-background: #ffffff;
+    --text-color: #333;
+    --subtle-text: #6c757d;
+    --border-color: #dee2e6;
+    --terminal-bg: #1e1e1e;
+    --terminal-text: #00ff41;
+    --success-color: #28a745;
+    --error-color: #dc3545;
+}
+
+body { 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.container { 
+    max-width: 800px; 
+    margin: 2em auto;
+    padding: 0 1em;
+}
+
+header {
+    background-color: var(--card-background);
+    padding: 1.5em;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 2em;
+    text-align: center;
+}
+
+header h1 { 
+    margin: 0; 
+    font-size: 2em;
+}
+
+nav {
+    margin-top: 1em;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1em;
+}
+
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 600;
+    transition: color 0.2s ease-in-out;
+}
+
+nav a:hover { color: var(--primary-hover); }
+
+nav a.active {
+    color: var(--text-color);
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 6px;
+}
+
+.card {
+    background-color: var(--card-background);
+    border-radius: 12px;
+    padding: 1.5em 2em;
+    margin-bottom: 1.5em;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.card h2 {
+    margin-top: 0;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+}
+
+input, button {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    font-size: 1em;
+    transition: all 0.2s ease-in-out;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+button {
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    font-weight: bold;
+}
+
+button:hover { 
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#status { 
+    font-weight: bold; 
+    padding: 1em; 
+    background-color: #e9ecef; 
+    border-radius: 8px; 
+    word-wrap: break-word;
+    margin-top: 1em;
+}
+
+#certificateList {
+    list-style-type: none;
+    padding: 0;
+    max-height: 180px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+#certificateList li {
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+    font-family: monospace;
+    font-size: 0.9em;
+    color: var(--subtle-text);
+}
+
+#certificateList li:last-child { border-bottom: none; }
+
+.terminal {
+    height: 250px;
+    overflow-y: scroll;
+    padding: 1em;
+    background-color: var(--terminal-bg);
+    color: var(--terminal-text);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    border-radius: 8px;
+}
+
+.terminal p {
+    margin: 0 0 5px 0;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.block { 
+    background-color: var(--card-background); 
+    border-radius: 12px;
+    margin-bottom: 1.5em; 
+    padding: 1.5em; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+}
+.block-header { font-weight: bold; font-size: 1.4em; color: var(--primary-color); }
+.block-field { margin-top: 12px; }
+.field-label { font-weight: bold; color: var(--text-color); }
+.field-value { color: var(--subtle-text); word-wrap: break-word; }

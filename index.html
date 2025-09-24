@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Verifier</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Certificate Verification dApp</h1>
+            <nav>
+                <a href="index.html" class="active">Main dApp</a>
+                <a href="blocks.html">Block Explorer</a>
+            </nav>
+        </header>
+        
+        <section class="card">
+            <h2>Connection Status</h2>
+            <button id="connectButton">Connect to MetaMask</button>
+            <p id="status">Not Connected</p>
+            <h3 id="blockNumber">Current Block: #--</h3>
+        </section>
+
+        <section class="card">
+            <h2>Issue Certificate</h2>
+            <form id="issueForm">
+                <input type="text" id="studentName" placeholder="Student Name" required>
+                <input type="text" id="courseName" placeholder="Course Name" required>
+                <button type="submit">Issue Certificate</button>
+            </form>
+        </section>
+        
+        <section class="card">
+            <h2>Verify Certificate</h2>
+            <form id="verifyForm">
+                <input type="text" id="certificateId" placeholder="Certificate ID" required>
+                <button type="submit">Verify</button>
+            </form>
+        </section>
+
+        <section class="card">
+            <h2>All Issued Certificate IDs</h2>
+            <button id="listButton">Show All Certificates</button>
+            <ul id="certificateList"></ul>
+        </section>
+
+        <section class="card">
+            <h2>Real-Time Blockchain Activity</h2>
+            <div id="logContainer" class="terminal">
+                <!-- Log messages will appear here -->
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

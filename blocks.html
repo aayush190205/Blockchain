@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Block Explorer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Block Explorer</h1>
+            <nav>
+                <a href="index.html">Main dApp</a>
+                <a href="blocks.html" class="active">Block Explorer</a>
+            </nav>
+        </header>
+        <div id="blocks-container">
+            <p>Loading blocks...</p>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
+    <script src="blocks.js"></script>
+</body>
+</html>
