@@ -1,6 +1,6 @@
 window.addEventListener('load', async () => {
     const blocksContainer = document.getElementById('blocks-container');
-    const provider = new ethers.providers.JsonRpcProvider("http://127.0.0.1:8545");
+    const provider = new ethers.providers.JsonRpcProvider("https://sepolia.infura.io/v3/5cb8eb30eaae446c81ab26a22e968dda");
 
     try {
         // Get the latest block number
@@ -50,4 +50,5 @@ window.addEventListener('load', async () => {
         blocksContainer.innerHTML = '<p>Could not fetch blocks. Is your Hardhat node running?</p>';
         console.error("Error fetching blocks:", error);
     }
+
 });
