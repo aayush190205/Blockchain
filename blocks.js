@@ -29,22 +29,29 @@ window.addEventListener('load', async () => {
             txDetailsHTML += `</div>`;
         }
         
-        blockDiv.innerHTML = `
-            <div class="block-header">Block #${block.number}</div>
-            <div class="block-field">
-                <span class="field-label">Hash:</span>
-                <span class="field-value">${block.hash}</span>
-            </div>
-            <div class="block-field">
-                <span class="field-label">Timestamp:</span>
-                <span class="field-value">${date}</span>
-            </div>
-            <div class="block-field">
-                <span class="field-label">Total Transactions:</span>
-                <span class="field-value">${block.transactions.length}</span>
-            </div>
-            ${txDetailsHTML}
-        `;
+     blockDiv.innerHTML = `
+                <div class="block-header">Block #${block.number}</div>
+                <div class="block-field">
+                    <span class="field-label">Hash:</span>
+                    <span class="field-value">${block.hash}</span>
+                </div>
+                <div class="block-field">
+                    <span class="field-label">Parent Hash:</span>
+                    <span class="field-value">${block.parentHash}</span>
+                </div>
+                <div class="block-field">
+                    <span class="field-label">Timestamp:</span>
+                    <span class="field-value">${date}</span>
+                </div>
+                <div class="block-field">
+                    <span class="field-label">Transactions:</span>
+                    <span class="field-value">${block.transactions.length}</span>
+                </div>
+                <div class="block-field">
+                    <span class="field-label">Mined by:</span>
+                    <span class="field-value">${block.miner}</span>
+                </div>
+            `;
         return blockDiv;
     };
     
@@ -98,3 +105,4 @@ window.addEventListener('load', async () => {
 
     fetchData();
 });
+
