@@ -1,6 +1,6 @@
-/* --- Final, Advanced UI Redesign --- */
+
 :root {
-    --primary-color: #4A90E2; /* A modern, friendly blue */
+    --primary-color: #4A90E2;
     --primary-hover: #357ABD;
     --background-color: #F7F9FC;
     --card-background: #FFFFFF;
@@ -213,3 +213,4 @@ button:hover {
 .block-field { margin-top: 12px; }
 .field-label { font-weight: 600; color: var(--text-color); }
 .field-value { color: var(--subtle-text); word-wrap: break-word; font-family: monospace; }
+
