@@ -1,28 +1,33 @@
-/* --- Professional Redesign for Certificate dApp --- */
+/* --- Final, Advanced UI Redesign --- */
 :root {
-    --primary-color: #007bff;
-    --primary-hover: #0056b3;
-    --background-color: #f4f7f6;
-    --card-background: #ffffff;
-    --text-color: #333;
-    --subtle-text: #6c757d;
-    --border-color: #dee2e6;
-    --terminal-bg: #1e1e1e;
-    --terminal-text: #00ff41;
+    --primary-color: #4A90E2; /* A modern, friendly blue */
+    --primary-hover: #357ABD;
+    --background-color: #F7F9FC;
+    --card-background: #FFFFFF;
+    --text-color: #24292E;
+    --subtle-text: #586069;
+    --border-color: #E1E4E8;
+    --terminal-bg: #161B22;
+    --terminal-text: #7EE787;
     --success-color: #28a745;
-    --error-color: #dc3545;
+    --error-color: #d73a49;
+    --shadow: 0 6px 24px rgba(149,157,165,0.2);
+}
+
+* {
+    box-sizing: border-box;
 }
 
 body { 
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
     background-color: var(--background-color);
     color: var(--text-color);
 }
 
 .container { 
-    max-width: 800px; 
-    margin: 2em auto;
+    max-width: 840px; 
+    margin: 2.5em auto;
     padding: 0 1em;
 }
 
@@ -30,44 +35,50 @@ header {
     background-color: var(--card-background);
     padding: 1.5em;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    margin-bottom: 2em;
+    box-shadow: var(--shadow);
+    margin-bottom: 2.5em;
     text-align: center;
 }
 
 header h1 { 
     margin: 0; 
-    font-size: 2em;
+    font-size: 2.2em;
+    letter-spacing: -1px;
 }
 
 nav {
-    margin-top: 1em;
+    margin-top: 1.5em;
     border-top: 1px solid var(--border-color);
-    padding-top: 1em;
+    padding-top: 1.5em;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 nav a {
-    margin: 0 15px;
+    padding: 8px 16px;
+    border-radius: 8px;
     text-decoration: none;
     color: var(--primary-color);
     font-weight: 600;
-    transition: color 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
-nav a:hover { color: var(--primary-hover); }
+nav a:hover { 
+    background-color: #eef5ff;
+}
 
 nav a.active {
-    color: var(--text-color);
-    border-bottom: 3px solid var(--primary-color);
-    padding-bottom: 6px;
+    background-color: var(--primary-color);
+    color: white;
 }
 
 .card {
     background-color: var(--card-background);
     border-radius: 12px;
-    padding: 1.5em 2em;
-    margin-bottom: 1.5em;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    padding: 2em;
+    margin-bottom: 2em;
+    box-shadow: var(--shadow);
 }
 
 .card h2 {
@@ -75,13 +86,13 @@ nav a.active {
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 0.5em;
     margin-bottom: 1em;
+    font-size: 1.5em;
 }
 
 input, button {
     width: 100%;
     padding: 14px;
     margin-bottom: 12px;
-    box-sizing: border-box;
     border-radius: 8px;
     border: 1px solid var(--border-color);
     font-size: 1em;
@@ -91,7 +102,7 @@ input, button {
 input:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
 }
 
 button {
@@ -105,35 +116,37 @@ button {
 button:hover { 
     background-color: var(--primary-hover);
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 #status { 
-    font-weight: bold; 
+    font-weight: 500; 
     padding: 1em; 
-    background-color: #e9ecef; 
+    background-color: #eef5ff; 
     border-radius: 8px; 
     word-wrap: break-word;
     margin-top: 1em;
+    border: 1px solid #b8d6fb;
 }
 
 #certificateList {
     list-style-type: none;
     padding: 0;
-    max-height: 180px;
+    max-height: 200px;
     overflow-y: auto;
     border: 1px solid var(--border-color);
     border-radius: 8px;
 }
 
 #certificateList li {
-    padding: 10px;
+    padding: 12px;
     border-bottom: 1px solid var(--border-color);
     font-family: monospace;
     font-size: 0.9em;
     color: var(--subtle-text);
+    transition: background-color 0.2s;
 }
-
+#certificateList li:hover { background-color: #f6f8fa; }
 #certificateList li:last-child { border-bottom: none; }
 
 .terminal {
@@ -142,7 +155,7 @@ button:hover {
     padding: 1em;
     background-color: var(--terminal-bg);
     color: var(--terminal-text);
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'SF Mono', 'Courier New', Courier, monospace;
     font-size: 14px;
     border-radius: 8px;
 }
@@ -153,14 +166,50 @@ button:hover {
     word-break: break-all;
 }
 
+/* Block Explorer Specific Styles */
+#filter-container {
+    margin-bottom: 1.5em;
+    background-color: #e9ecef;
+    padding: 1em;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+#filter-container label { font-weight: 600; }
+#filter-toggle {
+    position: relative;
+    width: 50px;
+    height: 28px;
+    -webkit-appearance: none;
+    background: #c6c6c6;
+    outline: none;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+#filter-toggle:checked { background-color: var(--primary-color); }
+#filter-toggle::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+#filter-toggle:checked::before { transform: translateX(22px); }
+
 .block { 
     background-color: var(--card-background); 
     border-radius: 12px;
     margin-bottom: 1.5em; 
     padding: 1.5em; 
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+    box-shadow: var(--shadow); 
 }
-.block-header { font-weight: bold; font-size: 1.4em; color: var(--primary-color); }
+.block-header { font-weight: 600; font-size: 1.4em; color: var(--primary-color); }
 .block-field { margin-top: 12px; }
-.field-label { font-weight: bold; color: var(--text-color); }
-.field-value { color: var(--subtle-text); word-wrap: break-word; }
+.field-label { font-weight: 600; color: var(--text-color); }
+.field-value { color: var(--subtle-text); word-wrap: break-word; font-family: monospace; }
