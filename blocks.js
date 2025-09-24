@@ -29,7 +29,7 @@ window.addEventListener('load', async () => {
             txDetailsHTML += `</div>`;
         }
         
-     blockDiv.innerHTML = `
+    blockDiv.innerHTML = `
                 <div class="block-header">Block #${block.number}</div>
                 <div class="block-field">
                     <span class="field-label">Hash:</span>
@@ -105,4 +105,5 @@ window.addEventListener('load', async () => {
 
     fetchData();
 });
+
 
