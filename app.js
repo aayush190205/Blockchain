@@ -1,10 +1,10 @@
+// --- FINAL SCRIPT WITH ALL FEATURES ---
 const contractAddress = "0xeEB5b7FB6d5611098A9e52d61Ce4AA2654fd966A";
 const contractABI = [ { "inputs": [], "stateMutability": "nonpayable", "type": "constructor" }, { "anonymous": false, "inputs": [ { "indexed": false, "internalType": "bytes32", "name": "", "type": "bytes32" }, { "indexed": false, "internalType": "string", "name": "", "type": "string" }, { "indexed": false, "internalType": "string", "name": "", "type": "string" } ], "name": "CertificateIssued", "type": "event" }, { "anonymous": false, "inputs": [ { "indexed": false, "internalType": "bytes32", "name": "", "type": "bytes32" } ], "name": "CertificateRevoked", "type": "event" }, { "inputs": [ { "internalType": "address", "name": "", "type": "address" } ], "name": "authorized", "outputs": [ { "internalType": "bool", "name": "", "type": "bool" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "name": "certificateIdList", "outputs": [ { "internalType": "bytes32", "name": "", "type": "bytes32" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "bytes32", "name": "", "type": "bytes32" } ], "name": "certificateLookup", "outputs": [ { "internalType": "bytes32", "name": "", "type": "bytes32" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "bytes32", "name": "", "type": "bytes32" } ], "name": "certificates", "outputs": [ { "internalType": "string", "name": "studentName", "type": "string" }, { "internalType": "string", "name": "courseName", "type": "string" }, { "internalType": "uint256", "name": "issueDate", "type": "uint256" }, { "internalType": "bool", "name": "isRevoked", "type": "bool" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "_studentName", "type": "string" }, { "internalType": "string", "name": "_courseName", "type": "string" } ], "name": "findCertificate", "outputs": [ { "internalType": "bytes32", "name": "", "type": "bytes32" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getCertificateCount", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "bytes32", "name": "certificateId", "type": "bytes32" } ], "name": "getCertificateDetails", "outputs": [ { "internalType": "string", "name": "", "type": "string" }, { "internalType": "string", "name": "", "type": "string" }, { "internalType": "uint256", "name": "", "type": "uint256" }, { "internalType": "bool", "name": "", "type": "bool" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "_newUser", "type": "address" } ], "name": "grantAuthority", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "string", "name": "_studentName", "type": "string" }, { "internalType": "string", "name": "_courseName", "type": "string" } ], "name": "issueCertificate", "outputs": [ { "internalType": "bytes32", "name": "", "type": "bytes32" } ], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "owner", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "_user", "type": "address" } ], "name": "revokeAuthority", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "bytes32", "name": "certificateId", "type": "bytes32" } ], "name": "revokeCertificate", "outputs": [], "stateMutability": "nonpayable", "type": "function" } ];
 
 window.addEventListener('load', async () => {
     let provider, signer, contract, owner, currentUserAddress;
     
-    // DOM Elements
     const connectButton = document.getElementById('connectButton');
     const statusDiv = document.getElementById('status');
     const blockNumberDiv = document.getElementById('blockNumber');
@@ -33,7 +33,6 @@ window.addEventListener('load', async () => {
             const isAuthorized = await contract.authorized(currentUserAddress);
             adminPanel.style.display = isOwner ? 'block' : 'none';
             issuePanel.style.display = isAuthorized ? 'block' : 'none';
-
         } catch (error) {
             statusDiv.innerHTML = "Connection failed. Please connect to MetaMask.";
             adminPanel.style.display = 'none';
@@ -47,7 +46,6 @@ window.addEventListener('load', async () => {
 
     connectButton.addEventListener('click', updateConnectionStatus);
 
-    // Form Event Listeners
     issueForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const studentName = document.getElementById('studentName').value;
@@ -93,7 +91,7 @@ window.addEventListener('load', async () => {
         try {
             const certId = await contract.findCertificate(studentName, courseName);
             if (certId.toString() === "0x0000000000000000000000000000000000000000000000000000000000000000") {
-                lookupResults.innerHTML = `<p class="error">❌ No certificate found for this student and course.</p>`;
+                lookupResults.innerHTML = `<p class="error">❌ No certificate found.</p>`;
                 return;
             }
             
@@ -115,7 +113,6 @@ window.addEventListener('load', async () => {
     });
 });
 
-
 // --- ADVANCED REAL-TIME LOGS SECTION ---
 const logContainer = document.getElementById('logContainer');
 function logMessage(message) {
@@ -125,7 +122,7 @@ function logMessage(message) {
 }
 
 try {
-    const wsProvider = new ethers.providers.WebSocketProvider("YOUR_INFURA_OR_ALCHEMY_WEBSOCKET_URL"); 
+    const wsProvider = new ethers.providers.WebSocketProvider("https://sepolia.infura.io/v3/5cb8eb30eaae446c81ab26a22e968dda"); 
     const wsContract = new ethers.Contract(contractAddress, contractABI, wsProvider);
     logMessage("📡 Listening for blockchain events...");
 
