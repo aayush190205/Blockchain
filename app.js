@@ -1,4 +1,3 @@
-
 const contractAddress = "0xe7DE13DDB3AA789eD5fE3E7d595e629f4FEa71eA";
 const contractABI = [
     {
@@ -9,36 +8,11 @@ const contractABI = [
     {
       "anonymous": false,
       "inputs": [
-        {
-          "indexed": false,
-          "internalType": "bytes32",
-          "name": "certificateId",
-          "type": "bytes32"
-        },
-        {
-          "indexed": false,
-          "internalType": "string",
-          "name": "studentName",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "internalType": "string",
-          "name": "courseName",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "internalType": "string",
-          "name": "marks",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "internalType": "string",
-          "name": "issuingInstitution",
-          "type": "string"
-        }
+        { "indexed": false, "internalType": "bytes32", "name": "certificateId", "type": "bytes32" },
+        { "indexed": false, "internalType": "string", "name": "studentName", "type": "string" },
+        { "indexed": false, "internalType": "string", "name": "courseName", "type": "string" },
+        { "indexed": false, "internalType": "string", "name": "marks", "type": "string" },
+        { "indexed": false, "internalType": "string", "name": "issuingInstitution", "type": "string" }
       ],
       "name": "CertificateIssued",
       "type": "event"
@@ -46,94 +20,35 @@ const contractABI = [
     {
       "anonymous": false,
       "inputs": [
-        {
-          "indexed": false,
-          "internalType": "bytes32",
-          "name": "certificateId",
-          "type": "bytes32"
-        }
+        { "indexed": false, "internalType": "bytes32", "name": "certificateId", "type": "bytes32" }
       ],
       "name": "CertificateRevoked",
       "type": "event"
     },
     {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
+      "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
       "name": "authorized",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
+      "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
       "stateMutability": "view",
       "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
+      "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
       "name": "certificateIdList",
-      "outputs": [
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        }
-      ],
+      "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
       "stateMutability": "view",
       "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        }
-      ],
+      "inputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
       "name": "certificates",
       "outputs": [
-        {
-          "internalType": "string",
-          "name": "studentName",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "courseName",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "marks",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "issuingInstitution",
-          "type": "string"
-        },
-        {
-          "internalType": "uint256",
-          "name": "issueDate",
-          "type": "uint256"
-        },
-        {
-          "internalType": "bool",
-          "name": "isRevoked",
-          "type": "bool"
-        }
+        { "internalType": "string", "name": "studentName", "type": "string" },
+        { "internalType": "string", "name": "courseName", "type": "string" },
+        { "internalType": "string", "name": "marks", "type": "string" },
+        { "internalType": "string", "name": "issuingInstitution", "type": "string" },
+        { "internalType": "uint256", "name": "issueDate", "type": "uint256" },
+        { "internalType": "bool", "name": "isRevoked", "type": "bool" }
       ],
       "stateMutability": "view",
       "type": "function"
@@ -141,68 +56,26 @@ const contractABI = [
     {
       "inputs": [],
       "name": "getCertificateCount",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
+      "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
       "stateMutability": "view",
       "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "bytes32",
-          "name": "certificateId",
-          "type": "bytes32"
-        }
-      ],
+      "inputs": [{ "internalType": "bytes32", "name": "certificateId", "type": "bytes32" }],
       "name": "getCertificateDetails",
       "outputs": [
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        },
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        },
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
+        { "internalType": "string", "name": "", "type": "string" },
+        { "internalType": "string", "name": "", "type": "string" },
+        { "internalType": "string", "name": "", "type": "string" },
+        { "internalType": "string", "name": "", "type": "string" },
+        { "internalType": "uint256", "name": "", "type": "uint256" },
+        { "internalType": "bool", "name": "", "type": "bool" }
       ],
       "stateMutability": "view",
       "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_newUser",
-          "type": "address"
-        }
-      ],
+      "inputs": [{ "internalType": "address", "name": "_newUser", "type": "address" }],
       "name": "grantAuthority",
       "outputs": [],
       "stateMutability": "nonpayable",
@@ -210,68 +83,33 @@ const contractABI = [
     },
     {
       "inputs": [
-        {
-          "internalType": "string",
-          "name": "_studentName",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "_courseName",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "_marks",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "_issuingInstitution",
-          "type": "string"
-        }
+        { "internalType": "string", "name": "_studentName", "type": "string" },
+        { "internalType": "string", "name": "_courseName", "type": "string" },
+        { "internalType": "string", "name": "_marks", "type": "string" },
+        { "internalType": "string", "name": "_issuingInstitution", "type": "string" }
       ],
       "name": "issueCertificate",
-      "outputs": [
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        }
-      ],
+      "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
       "stateMutability": "nonpayable",
       "type": "function"
     },
     {
       "inputs": [],
       "name": "owner",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
+      "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
       "stateMutability": "view",
       "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "bytes32",
-          "name": "certificateId",
-          "type": "bytes32"
-        }
-      ],
+      "inputs": [{ "internalType": "bytes32", "name": "certificateId", "type": "bytes32" }],
       "name": "revokeCertificate",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
     }
-  ];
+];
 
 let provider, signer, contract, owner, currentUserAddress;
-
 
 window.addEventListener('load', async () => {
     // DOM Elements
@@ -367,20 +205,30 @@ window.addEventListener('load', async () => {
         }
     });
 
-    // Lookup Certificate
+    // Lookup Certificate (FIXED)
     lookupForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const studentName = document.getElementById('lookupStudentName').value;
         const courseName = document.getElementById('lookupCourseName').value;
         lookupResults.innerHTML = '<p>Searching...</p>';
         try {
-            const certId = await contract.findCertificate(studentName, courseName);
-            if (certId.toString() === "0x0000000000000000000000000000000000000000000000000000000000000000") {
+            const count = await contract.getCertificateCount();
+            let foundCertId = null;
+            for (let i = 0; i < count; i++) {
+                const certId = await contract.certificateIdList(i);
+                const details = await contract.getCertificateDetails(certId);
+                if (details[0] === studentName && details[1] === courseName) {
+                    foundCertId = certId;
+                    break;
+                }
+            }
+
+            if (!foundCertId) {
                 lookupResults.innerHTML = `<p class="error">❌ No certificate found for this student and course.</p>`;
                 return;
             }
 
-            const details = await contract.getCertificateDetails(certId);
+            const details = await contract.getCertificateDetails(foundCertId);
             const date = new Date(details[4] * 1000).toLocaleDateString();
             const revokedStatus = details[5] ? '<strong class="error">(REVOKED)</strong>' : '<strong class="success">(VALID)</strong>';
 
@@ -392,7 +240,7 @@ window.addEventListener('load', async () => {
                     <p><strong>Marks:</strong> ${details[2]}</p>
                     <p><strong>Institution:</strong> ${details[3]}</p>
                     <p><strong>Issued On:</strong> ${date}</p>
-                    <p><strong>Certificate ID:</strong> ${certId}</p>
+                    <p><strong>Certificate ID:</strong> ${foundCertId}</p>
                 </div>`;
         } catch (error) {
             lookupResults.innerHTML = `<p class="error">❌ Error during lookup.</p>`;
@@ -419,7 +267,6 @@ try {
 
     // Listen for contract events
     wsContract.on("CertificateIssued", (certificateId, studentName, courseName, event) => {
-        const from = event.transactionHash;
         logMessage(`---\n[Smart Contract Execution] Event 'CertificateIssued':\n   - Student: ${studentName}\n   - Course: ${courseName}`);
     });
 
@@ -431,7 +278,6 @@ try {
     wsProvider.on("block", async (blockNumber) => {
         const block = await wsProvider.getBlockWithTransactions(blockNumber);
         let blockMsg = `---\n[Block Propagation] New Block #${blockNumber} received.\n[Block Formation & Validation]\n   - Hash: ${block.hash.substring(0,14)}...\n   - Merkle Root: ${block.transactionsRoot.substring(0,14)}...\n   - Transactions: ${block.transactions.length}\n[Consensus] Mined by: ${block.miner.substring(0,14)}...`;
-        
         
         if (currentUserAddress) {
             const myTxs = block.transactions.filter(
@@ -453,4 +299,3 @@ try {
     console.error("WebSocket connection failed:", error);
     logMessage("🔌 WebSocket connection failed.");
 }
-
