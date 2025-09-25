@@ -1,4 +1,3 @@
-
 window.addEventListener('load', async () => {
     const contractAddress = "0x7B33669604a0904801a686291332CBE6C068835e";
     const contractABI = [
@@ -26,13 +25,13 @@ window.addEventListener('load', async () => {
     let allBlocksCache = [];
     let myBlocksCache = [];
 
+    // --- RENDER BLOCK IN EXAMPLE FORMAT ---
     const renderBlock = (block) => {
         const blockDiv = document.createElement('div');
         blockDiv.className = 'block';
         const date = new Date(block.timestamp * 1000).toLocaleString();
         const myTxs = block.myTransactions || [];
 
-        // Certificate txs
         let certTxsHTML = '';
         if (myTxs.length > 0) {
             certTxsHTML += `<div class="block-field"><span class="field-label">Your Certificate Transactions in this Block:</span>`;
@@ -42,41 +41,12 @@ window.addEventListener('load', async () => {
             certTxsHTML += `</div>`;
         }
 
-        // Normal transactions
-        let txDetailsHTML = '';
-        if (block.transactions.length > 0) {
-            txDetailsHTML += `<div class="block-field"><span class="field-label">Transactions:</span>`;
-            block.transactions.forEach(tx => {
-                txDetailsHTML += `
-                  <div class="field-value" style="margin-left:20px;">
-                    Hash: ${tx.hash}<br>
-                    From: ${tx.from}<br>
-                    To: ${tx.to || "Contract Creation"}<br>
-                    Value: ${ethers.utils.formatEther(tx.value)} ETH
-                  </div>`;
-            });
-            txDetailsHTML += `</div>`;
-        }
-
         blockDiv.innerHTML = `
-             <div class="block-header">Block #${block.number}</div>
-                <div class="block-field">
-                    <span class="field-label">Hash:</span>
-                    <span class="field-value">${block.hash}</span>
-                </div>
-                <div class="block-field">
-                    <span class="field-label">Parent Hash:</span>
-                    <span class="field-value">${block.parentHash}</span>
-                </div>
-                <div class="block-field">
-                    <span class="field-label">Timestamp:</span>
-                    <span class="field-value">${date}</span>
-                </div>
-                <div class="block-field">
-                    <span class="field-label">Mined by:</span>
-                    <span class="field-value">${block.miner}</span>
-                </div>
-            ${txDetailsHTML}
+            <div class="block-header">Block #${block.number}</div>
+            <div class="block-field"><span class="field-label">InfoHash:</span> <span class="field-value">${block.hash}</span></div>
+            <div class="block-field"><span class="field-label">Parent Hash:</span> <span class="field-value">${block.parentHash}</span></div>
+            <div class="block-field"><span class="field-label">Timestamp:</span> <span class="field-value">${date}</span></div>
+            <div class="block-field"><span class="field-label">Mined by:</span> <span class="field-value">${block.miner}</span></div>
             ${certTxsHTML}
         `;
         return blockDiv;
