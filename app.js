@@ -1,288 +1,27 @@
-const contractAddress = "0x8C13672c9cb7eC3044ce652b74A7c6a4ceE19E4D";
-const contractABI =[
-    {
-      "inputs": [],
-      "stateMutability": "nonpayable",
-      "type": "constructor"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "bytes32",
-          "name": "certificateId",
-          "type": "bytes32"
-        },
-        {
-          "indexed": false,
-          "internalType": "string",
-          "name": "studentName",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "internalType": "string",
-          "name": "courseName",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "internalType": "string",
-          "name": "marks",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "internalType": "string",
-          "name": "issuingInstitution",
-          "type": "string"
-        }
-      ],
-      "name": "CertificateIssued",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "bytes32",
-          "name": "certificateId",
-          "type": "bytes32"
-        }
-      ],
-      "name": "CertificateRevoked",
-      "type": "event"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "name": "authorized",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "certificateIdList",
-      "outputs": [
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        }
-      ],
-      "name": "certificates",
-      "outputs": [
-        {
-          "internalType": "string",
-          "name": "studentName",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "courseName",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "marks",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "issuingInstitution",
-          "type": "string"
-        },
-        {
-          "internalType": "uint256",
-          "name": "issueDate",
-          "type": "uint256"
-        },
-        {
-          "internalType": "bool",
-          "name": "isRevoked",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getCertificateCount",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "bytes32",
-          "name": "certificateId",
-          "type": "bytes32"
-        }
-      ],
-      "name": "getCertificateDetails",
-      "outputs": [
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        },
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        },
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_newUser",
-          "type": "address"
-        }
-      ],
-      "name": "grantAuthority",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "_studentName",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "_courseName",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "_marks",
-          "type": "string"
-        },
-        {
-          "internalType": "string",
-          "name": "_issuingInstitution",
-          "type": "string"
-        }
-      ],
-      "name": "issueCertificate",
-      "outputs": [
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "owner",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_user",
-          "type": "address"
-        }
-      ],
-      "name": "revokeAuthority",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "bytes32",
-          "name": "certificateId",
-          "type": "bytes32"
-        }
-      ],
-      "name": "revokeCertificate",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    }
-  ];
+// === app.js (final, ready to paste) ===
 
-let provider, signer, contract, owner, currentUserAddress;
+const contractAddress = "0xfBefA1127Fedf77f460Ee942a7d911728ad894aC";
+const contractABI = [
+  {"inputs":[],"stateMutability":"nonpayable","type":"constructor"},
+  {"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"newUser","type":"address"}],"name":"AuthorityGranted","type":"event"},
+  {"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"revokedUser","type":"address"}],"name":"AuthorityRevoked","type":"event"},
+  {"anonymous":false,"inputs":[{"indexed":false,"internalType":"bytes32","name":"certificateId","type":"bytes32"},{"indexed":false,"internalType":"string","name":"studentName","type":"string"},{"indexed":false,"internalType":"string","name":"courseName","type":"string"},{"indexed":false,"internalType":"string","name":"marks","type":"string"},{"indexed":false,"internalType":"string","name":"issuingInstitution","type":"string"}],"name":"CertificateIssued","type":"event"},
+  {"anonymous":false,"inputs":[{"indexed":false,"internalType":"bytes32","name":"certificateId","type":"bytes32"}],"name":"CertificateRevoked","type":"event"},
+  {"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"oldOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},
+  {"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"authorized","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},
+  {"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"certificateIdList","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},
+  {"inputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"name":"certificates","outputs":[{"internalType":"string","name":"studentName","type":"string"},{"internalType":"string","name":"courseName","type":"string"},{"internalType":"string","name":"marks","type":"string"},{"internalType":"string","name":"issuingInstitution","type":"string"},{"internalType":"uint256","name":"issueDate","type":"uint256"},{"internalType":"bool","name":"isRevoked","type":"bool"}],"stateMutability":"view","type":"function"},
+  {"inputs":[],"name":"getCertificateCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},
+  {"inputs":[{"internalType":"bytes32","name":"certificateId","type":"bytes32"}],"name":"getCertificateDetails","outputs":[{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"},{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},
+  {"inputs":[{"internalType":"address","name":"_newUser","type":"address"}],"name":"grantAuthority","outputs":[],"stateMutability":"nonpayable","type":"function"},
+  {"inputs":[{"internalType":"string","name":"_studentName","type":"string"},{"internalType":"string","name":"_courseName","type":"string"},{"internalType":"string","name":"_marks","type":"string"},{"internalType":"string","name":"_issuingInstitution","type":"string"}],"name":"issueCertificate","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"nonpayable","type":"function"},
+  {"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},
+  {"inputs":[{"internalType":"address","name":"_user","type":"address"}],"name":"revokeAuthority","outputs":[],"stateMutability":"nonpayable","type":"function"},
+  {"inputs":[{"internalType":"bytes32","name":"certificateId","type":"bytes32"}],"name":"revokeCertificate","outputs":[],"stateMutability":"nonpayable","type":"function"},
+  {"inputs":[{"internalType":"address","name":"_newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"}
+];
+
+let provider, signer, contract, owner, currentUserAddress, isAuthorizedFlag;
 
 window.addEventListener('load', async () => {
     // DOM Elements
@@ -296,11 +35,74 @@ window.addEventListener('load', async () => {
     const revokeForm = document.getElementById('revokeForm');
     const lookupForm = document.getElementById('lookupForm');
     const lookupResults = document.getElementById('lookupResults');
-
-    
+    const allCertificatesPanel = document.getElementById('allCertificatesPanel');
     const loadCertificatesBtn = document.getElementById('loadCertificatesBtn');
     const allCertificatesList = document.getElementById('allCertificatesList');
-    issuePanel.style.display = 'block';
+
+    // Ensure All Certificates panel visible
+    if (allCertificatesPanel) allCertificatesPanel.style.display = 'block';
+
+    // Create dynamic admin controls for owner-only functions (so index.html need not be changed)
+    function addOwnerControls() {
+        // Don't duplicate
+        if (document.getElementById('revokeAuthorityForm')) return;
+
+        const revokeAuthForm = document.createElement('form');
+        revokeAuthForm.id = 'revokeAuthorityForm';
+        revokeAuthForm.innerHTML = `
+            <h3>Revoke Authority (owner only)</h3>
+            <input type="text" id="revokeAuthAddress" placeholder="Address to revoke" required>
+            <button type="submit">Revoke Authority</button>
+            <hr>
+        `;
+        adminPanel.appendChild(revokeAuthForm);
+
+        const transferOwnerForm = document.createElement('form');
+        transferOwnerForm.id = 'transferOwnerForm';
+        transferOwnerForm.innerHTML = `
+            <h3>Transfer Ownership</h3>
+            <input type="text" id="newOwnerAddress" placeholder="New Owner Address" required>
+            <button type="submit">Transfer Ownership</button>
+            <hr>
+        `;
+        adminPanel.appendChild(transferOwnerForm);
+
+        // Handlers
+        revokeAuthForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const addr = document.getElementById('revokeAuthAddress').value;
+            try {
+                statusDiv.innerHTML = `Revoking authority for ${addr}...`;
+                const tx = await contract.revokeAuthority(addr);
+                logMessage(`[Broadcasting] revokeAuthority tx ${tx.hash}`, true);
+                await tx.wait();
+                statusDiv.innerHTML = `Authority revoked for ${addr}.`;
+                logMessage(`Authority revoked for ${addr}`);
+                revokeAuthForm.reset();
+            } catch (err) {
+                statusDiv.innerHTML = `Error: ${err.reason || err.message || 'Failed to revoke authority.'}`;
+            }
+        });
+
+        transferOwnerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const newAddr = document.getElementById('newOwnerAddress').value;
+            try {
+                statusDiv.innerHTML = `Transferring ownership to ${newAddr}...`;
+                const tx = await contract.transferOwnership(newAddr);
+                logMessage(`[Broadcasting] transferOwnership tx ${tx.hash}`, true);
+                await tx.wait();
+                statusDiv.innerHTML = `Ownership transferred to ${newAddr}.`;
+                logMessage(`Ownership transferred to ${newAddr}`);
+                transferOwnerForm.reset();
+                // refresh connection status to update UI
+                await updateConnectionStatus();
+            } catch (err) {
+                statusDiv.innerHTML = `Error: ${err.reason || err.message || 'Failed to transfer ownership.'}`;
+            }
+        });
+    }
+
     async function updateConnectionStatus() {
         try {
             await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -314,14 +116,23 @@ window.addEventListener('load', async () => {
             connectButton.textContent = "Connected";
             await updateBlockNumber();
 
-            // keep panels visible — do not hide them. Show authorization state in status area.
             const isOwner = currentUserAddress === owner;
-            const isAuthorized = await contract.authorized(currentUserAddress);
-            // Inform user of auth state (we won't hide panels)
-            logMessage(`[Auth] Owner: ${isOwner}, Authorized: ${isAuthorized}`);
+            isAuthorizedFlag = await contract.authorized(currentUserAddress);
+
+            adminPanel.style.display = isOwner ? 'block' : 'none';
+            issuePanel.style.display = isAuthorizedFlag ? 'block' : 'none';
+
+            // show all-certs panel always after connect
+            if (allCertificatesPanel) allCertificatesPanel.style.display = 'block';
+
+            // Add owner controls dynamically if owner
+            if (isOwner) addOwnerControls();
+
         } catch (error) {
             statusDiv.innerHTML = "Connection failed. Please connect to MetaMask.";
-            logMessage("[Auth] Could not connect or fetch auth info.");
+            adminPanel.style.display = 'none';
+            issuePanel.style.display = 'none';
+            if (allCertificatesPanel) allCertificatesPanel.style.display = 'none';
         }
     }
 
@@ -349,78 +160,125 @@ window.addEventListener('load', async () => {
             logMessage(`✅ Certificate issued successfully! Transaction Hash: ${tx.hash}`, true);
             issueForm.reset();
         } catch (error) {
-            // show contract error or generic message
-            const msg = (error && (error.reason || error.message)) ? (error.reason || error.message) : "Transaction failed.";
-            statusDiv.innerHTML = `Error: ${msg}`;
-            logMessage(`[Error] Issue certificate failed: ${msg}`);
+            statusDiv.innerHTML = `Error: ${error.reason || error.message || "Transaction failed."}`;
         }
     });
 
-    // Grant Authority
+    // Grant Authority (already present in HTML)
     authForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const authAddress = document.getElementById('authAddress').value;
         try {
             statusDiv.innerHTML = `Granting authority to ${authAddress}...`;
             const tx = await contract.grantAuthority(authAddress);
+            logMessage(`[Broadcasting] grantAuthority tx ${tx.hash}`, true);
             await tx.wait();
-            statusDiv.innerHTML = `Successfully granted authority!`;
+            statusDiv.innerHTML = `Successfully granted authority to ${authAddress}!`;
+            logMessage(`Authority granted to ${authAddress}`);
             authForm.reset();
         } catch (error) {
-            const msg = (error && (error.reason || error.message)) ? (error.reason || error.message) : "Failed to grant.";
-            statusDiv.innerHTML = `Error: ${msg}`;
-            logMessage(`[Error] grantAuthority failed: ${msg}`);
+            statusDiv.innerHTML = `Error: ${error.reason || error.message || "Failed to grant."}`;
         }
     });
 
-    // Revoke Certificate
+    // Revoke Certificate (existing form in HTML)
     revokeForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const revokeCertId = document.getElementById('revokeCertId').value;
         try {
             statusDiv.innerHTML = `Revoking certificate ${revokeCertId}...`;
             const tx = await contract.revokeCertificate(revokeCertId);
+            logMessage(`[Broadcasting] revokeCertificate tx ${tx.hash}`, true);
             await tx.wait();
-            statusDiv.innerHTML = `Successfully revoked certificate!`;
+            statusDiv.innerHTML = `Successfully revoked certificate! Transaction Hash: ${tx.hash}`;
+            logMessage(`Certificate ${revokeCertId} revoked`);
             revokeForm.reset();
         } catch (error) {
-            const msg = (error && (error.reason || error.message)) ? (error.reason || error.message) : "Failed to revoke.";
-            statusDiv.innerHTML = `Error: ${msg}`;
-            logMessage(`[Error] revokeCertificate failed: ${msg}`);
+            statusDiv.innerHTML = `Error: ${error.reason || error.message || "Failed to revoke."}`;
         }
     });
 
-    // Lookup Certificate (supports hash OR name+course)
+    // Lookup UI enhancement: allow searching by hash or by name+course.
+    (function addLookupToggle() {
+        const lookupSection = lookupForm.parentElement;
+        if (!lookupSection) return;
+        // create container only if not already created
+        if (document.getElementById('lookupModeContainer')) return;
+
+        const container = document.createElement('div');
+        container.id = 'lookupModeContainer';
+        container.innerHTML = `
+            <div style="margin-bottom:8px;">
+                <label><input type="radio" name="lookupMode" value="name" checked> Search by Name + Course</label>
+                &nbsp;&nbsp;
+                <label><input type="radio" name="lookupMode" value="hash"> Search by Certificate Hash</label>
+            </div>
+            <div id="lookupHashContainer" style="display:none; margin-bottom:8px;">
+                <input type="text" id="lookupCertHash" placeholder="Enter Certificate Hash (0x...)" style="width:100%;">
+            </div>
+        `;
+        lookupSection.insertBefore(container, lookupForm);
+
+        const radios = container.querySelectorAll('input[name="lookupMode"]');
+        radios.forEach(r => {
+            r.addEventListener('change', () => {
+                const mode = container.querySelector('input[name="lookupMode"]:checked').value;
+                document.getElementById('lookupHashContainer').style.display = (mode === 'hash') ? 'block' : 'none';
+                // toggle name/course required attribute
+                document.getElementById('lookupStudentName').required = (mode === 'name');
+                document.getElementById('lookupCourseName').required = (mode === 'name');
+            });
+        });
+    })();
+
+    // Lookup Certificate (supports both modes)
     lookupForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const studentNameRaw = document.getElementById('lookupStudentName').value.trim();
-        const courseName = document.getElementById('lookupCourseName').value.trim();
+        const lookupMode = document.querySelector('input[name="lookupMode"]:checked')?.value || 'name';
         lookupResults.innerHTML = '<p>Searching...</p>';
 
         try {
-            // If user entered a likely certId (hex, starts with 0x and length >=66), treat as direct lookup by id.
-            const isHexId = studentNameRaw.startsWith('0x') && studentNameRaw.length >= 66;
-            let foundCertId = null;
+            if (lookupMode === 'hash') {
+                const certHashInput = document.getElementById('lookupCertHash').value.trim();
+                if (!certHashInput) {
+                    lookupResults.innerHTML = `<p class="error">Enter a certificate hash.</p>`;
+                    return;
+                }
+                const certId = certHashInput;
+                // Try fetch details directly
+                const details = await contract.getCertificateDetails(certId);
+                const date = new Date(details[4] * 1000).toLocaleDateString();
+                const revokedStatus = details[5] ? '<strong class="error">(REVOKED)</strong>' : '<strong class="success">(VALID)</strong>';
+                lookupResults.innerHTML = `
+                    <div class="certificate-details">
+                        <h3>Verification Result: ${revokedStatus}</h3>
+                        <p><strong>Student:</strong> ${details[0]}</p>
+                        <p><strong>Course:</strong> ${details[1]}</p>
+                        <p><strong>Marks:</strong> ${details[2]}</p>
+                        <p><strong>Institution:</strong> ${details[3]}</p>
+                        <p><strong>Issued On:</strong> ${date}</p>
+                        <p><strong>Certificate ID:</strong> ${certId}</p>
+                    </div>`;
+                return;
+            }
 
-            if (isHexId) {
-                // direct lookup by hash
-                foundCertId = studentNameRaw;
-            } else {
-                // lookup by student name + course name (case-sensitive exact match)
-                const count = await contract.getCertificateCount();
-                for (let i = 0; i < count; i++) {
-                    const certId = await contract.certificateIdList(i);
-                    const details = await contract.getCertificateDetails(certId);
-                    // details: [studentName, courseName, marks, issuingInstitution, issueDate, isRevoked]
-                    if (details[0] === studentNameRaw && details[1] === courseName) {
-                        foundCertId = certId;
-                        break;
-                    }
+            // Name + Course mode: scan the list
+            const studentName = document.getElementById('lookupStudentName').value;
+            const courseName = document.getElementById('lookupCourseName').value;
+
+            const count = await contract.getCertificateCount();
+            let foundCertId = null;
+            for (let i = 0; i < count; i++) {
+                const certId = await contract.certificateIdList(i);
+                const details = await contract.getCertificateDetails(certId);
+                if (details[0] === studentName && details[1] === courseName) {
+                    foundCertId = certId;
+                    break;
                 }
             }
 
             if (!foundCertId) {
-                lookupResults.innerHTML = `<p class="error">❌ No certificate found for the provided input.</p>`;
+                lookupResults.innerHTML = `<p class="error">❌ No certificate found for this student and course.</p>`;
                 return;
             }
 
@@ -439,162 +297,152 @@ window.addEventListener('load', async () => {
                     <p><strong>Certificate ID:</strong> ${foundCertId}</p>
                 </div>`;
         } catch (error) {
-            const msg = (error && (error.reason || error.message)) ? (error.reason || error.message) : "Error during lookup.";
-            lookupResults.innerHTML = `<p class="error">❌ ${msg}</p>`;
-            logMessage(`[Error] lookup failed: ${msg}`);
+            lookupResults.innerHTML = `<p class="error">❌ Error during lookup: ${error.reason || error.message || ''}</p>`;
         }
     });
 
-    // Load "My Certificates" — lists certificates issued by the connected wallet (uses events + tx.from)
-    if (loadCertificatesBtn && allCertificatesList) {
-        loadCertificatesBtn.addEventListener('click', async () => {
-            if (!contract) {
-                return alert("Please connect wallet first.");
-            }
-            if (!provider) {
-                provider = new ethers.providers.Web3Provider(window.ethereum);
-            }
-            allCertificatesList.innerHTML = "<p>Loading your certificates...</p>";
-            try {
-                // Get all CertificateIssued events and filter by transaction sender
-                const eventFilter = contract.filters.CertificateIssued();
-                // Query logs from block 0 to latest. If your chain is heavy, you may restrict by a lower block number.
-                const events = await contract.queryFilter(eventFilter, 0, 'latest');
+    // ------------------ REAL-TIME LOGGING ------------------
+    const logContainer = document.getElementById('logContainer');
+    function logMessage(message, highlight=false) {
+        if (!logContainer) return;
+        const logEntry = document.createElement('p');
+        logEntry.innerHTML = message.replace(/\n/g, '<br>');
+        if (highlight) {
+            logEntry.style.color = "limegreen";
+            logEntry.style.fontWeight = "bold";
+        }
+        logContainer.prepend(logEntry);
+    }
 
-                // Build map of certId -> event
-                const myEvents = [];
-                for (const ev of events) {
-                    try {
-                        const tx = await provider.getTransaction(ev.transactionHash);
-                        if (!tx) continue;
-                        const from = (tx.from || "").toLowerCase();
-                        if (currentUserAddress && from === currentUserAddress) {
-                            myEvents.push(ev);
-                        }
-                    } catch (err) {
-                        // ignore per-event errors
-                        console.warn("Failed to fetch tx for event:", ev.transactionHash, err);
-                    }
-                }
+    // WebSocket provider (use wss). Replace project ID if you want to use a different Infura project.
+    try {
+        const wsProvider = new ethers.providers.WebSocketProvider("wss://sepolia.infura.io/ws/v3/5cb8eb30eaae446c81ab26a22e968dda");
+        const wsContract = new ethers.Contract(contractAddress, contractABI, wsProvider);
+        logMessage("[P2P Network] Listening for blockchain events...");
 
-                if (myEvents.length === 0) {
-                    allCertificatesList.innerHTML = "<p>No certificates found that were issued by your wallet.</p>";
-                    return;
-                }
-
-                let html = "";
-                // For each event, show summary and allow toggling details (fetched from contract)
-                for (const ev of myEvents) {
-                    const certId = ev.args ? ev.args[0] : null;
-                    // get details from contract
-                    let details;
-                    try {
-                        details = await contract.getCertificateDetails(certId);
-                    } catch (err) {
-                        // If the on-chain details fail, still show event data if available
-                        details = ev.args ? [ev.args[1] || "", ev.args[2] || "", ev.args[3] || "", ev.args[4] || "", 0, false] : ["", "", "", "", 0, false];
-                    }
-                    const date = details[4] ? new Date(details[4] * 1000).toLocaleDateString() : "N/A";
-                    const revokedStatus = details[5] ? '<strong class="error">(REVOKED)</strong>' : '<strong class="success">(VALID)</strong>';
-                    // Shorten certId for id attributes
-                    const certIdSafe = certId ? certId.toString().replace(/^0x/, '') : Math.random().toString(36).substr(2,9);
-
-                    html += `
-                        <div class="certificate-summary">
-                            <p><strong>Student:</strong> ${details[0]} | <strong>Course:</strong> ${details[1]} | ${revokedStatus}</p>
-                            <p><small>Transaction: <code>${ev.transactionHash}</code></small></p>
-                            <button class="showDetailsBtn" data-certid="${certId}">Show Details</button>
-                            <div class="certificate-full-details" id="details-${certIdSafe}" style="display:none; margin-left: 12px;">
-                                <p><strong>Marks:</strong> ${details[2]}</p>
-                                <p><strong>Institution:</strong> ${details[3]}</p>
-                                <p><strong>Issued On:</strong> ${date}</p>
-                                <p><strong>Certificate ID:</strong> ${certId}</p>
-                                <p><strong>Tx Hash:</strong> ${ev.transactionHash}</p>
-                            </div>
-                        </div>
-                        <hr>
-                    `;
-                }
-
-                allCertificatesList.innerHTML = html;
-
-                // Add toggle behavior for details
-                document.querySelectorAll('.showDetailsBtn').forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        const certId = btn.getAttribute('data-certid');
-                        const certIdSafe = certId ? certId.toString().replace(/^0x/, '') : "";
-                        const detailsDiv = document.getElementById(`details-${certIdSafe}`);
-                        if (!detailsDiv) return;
-                        if (detailsDiv.style.display === "none") {
-                            detailsDiv.style.display = "block";
-                            btn.textContent = "Hide Details";
-                        } else {
-                            detailsDiv.style.display = "none";
-                            btn.textContent = "Show Details";
-                        }
-                    });
-                });
-
-            } catch (err) {
-                allCertificatesList.innerHTML = `<p class="error">Error loading certificates: ${err.message || err}</p>`;
-                logMessage(`[Error] loadCertificates failed: ${err.message || err}`);
-            }
+        // Listen for contract events
+        wsContract.on("CertificateIssued", (certificateId, studentName, courseName, marks, issuingInstitution, event) => {
+            // some ABIs differ in tuple order — this listens and prints best-effort
+            logMessage(`---\n[Smart Contract Execution] Event 'CertificateIssued':\n   - Student: ${studentName}\n   - Course: ${courseName}\n   - Certificate ID: ${certificateId}`);
         });
-    }
 
-}); // end window load
+        wsContract.on("CertificateRevoked", (certificateId, event) => {
+            logMessage(`---\n[Smart Contract Execution] Event 'CertificateRevoked':\n   - ID: ${certificateId.substring(0,14)}...`);
+        });
 
-// ------------------ REAL-TIME LOGGING ------------------
-const logContainer = document.getElementById('logContainer');
-function logMessage(message, highlight=false) {
-    // If logContainer doesn't exist yet, skip safely
-    if (!logContainer) return;
-    const logEntry = document.createElement('p');
-    logEntry.innerHTML = message.replace(/\n/g, '<br>');
-    if (highlight) {
-        logEntry.style.color = "limegreen";
-        logEntry.style.fontWeight = "bold";
-    }
-    logContainer.prepend(logEntry);
-}
+        wsContract.on("AuthorityGranted", (newUser) => {
+            logMessage(`---\n[Admin] Authority granted to ${newUser}`);
+        });
 
-try {
-    // Keep using the same WebSocket URL you had
-    const wsProvider = new ethers.providers.WebSocketProvider("https://sepolia.infura.io/v3/5cb8eb30eaae446c81ab26a22e968dda");
-    const wsContract = new ethers.Contract(contractAddress, contractABI, wsProvider);
-    logMessage("[P2P Network] Listening for blockchain events...");
+        wsContract.on("AuthorityRevoked", (revokedUser) => {
+            logMessage(`---\n[Admin] Authority revoked from ${revokedUser}`);
+        });
 
-    // Listen for contract events (adjusted to event signature with marks and issuingInstitution)
-    wsContract.on("CertificateIssued", (certificateId, studentName, courseName, marks, issuingInstitution, event) => {
-        logMessage(`---\n[Smart Contract Execution] Event 'CertificateIssued':\n   - Student: ${studentName}\n   - Course: ${courseName}`);
-    });
+        wsContract.on("OwnershipTransferred", (oldOwner, newOwner) => {
+            logMessage(`---\n[Admin] Ownership transferred from ${oldOwner} to ${newOwner}`);
+        });
 
-    wsContract.on("CertificateRevoked", (certificateId, event) => {
-        logMessage(`---\n[Smart Contract Execution] Event 'CertificateRevoked':\n   - ID: ${certificateId.substring(0,14)}...`);
-    });
+        // Listen for new blocks and highlight user's txs
+        wsProvider.on("block", async (blockNumber) => {
+            const block = await wsProvider.getBlockWithTransactions(blockNumber);
+            let blockMsg = `---\n[Block Propagation] New Block #${blockNumber} received.\n[Block Formation & Validation]\n   - Hash: ${block.hash.substring(0,14)}...\n   - Merkle Root: ${block.transactionsRoot.substring(0,14)}...\n   - Transactions: ${block.transactions.length}\n[Consensus] Mined by: ${block.miner.substring(0,14)}...`;
 
-    // Listen for new blocks
-    wsProvider.on("block", async (blockNumber) => {
-        const block = await wsProvider.getBlockWithTransactions(blockNumber);
-        let blockMsg = `---\n[Block Propagation] New Block #${blockNumber} received.\n[Block Formation & Validation]\n   - Hash: ${block.hash.substring(0,14)}...\n   - Merkle Root: ${block.transactionsRoot.substring(0,14)}...\n   - Transactions: ${block.transactions.length}\n[Consensus] Mined by: ${block.miner.substring(0,14)}...`;
-        
-        if (currentUserAddress) {
-            const myTxs = block.transactions.filter(
-                tx => (tx.from && tx.from.toLowerCase() === currentUserAddress) || (tx.to && tx.to.toLowerCase() === currentUserAddress)
-            );
-            if (myTxs.length > 0) {
-                myTxs.forEach(tx => {
-                    logMessage(`🚀 Your Transaction Included!\n   - Hash: ${tx.hash.substring(0,14)}...\n   - From: ${tx.from.substring(0,14)}...\n   - To: ${tx.to ? tx.to.substring(0,14) : "Contract Creation"}`, true);
-                });
+            if (currentUserAddress) {
+                const myTxs = block.transactions.filter(
+                    tx => tx.from && tx.from.toLowerCase() === currentUserAddress || (tx.to && tx.to.toLowerCase() === currentUserAddress)
+                );
+                if (myTxs.length > 0) {
+                    myTxs.forEach(tx => {
+                        logMessage(`🚀 Your Transaction Included!\n   - Hash: ${tx.hash.substring(0,14)}...\n   - From: ${tx.from ? tx.from.substring(0,14) : ''}...\n   - To: ${tx.to ? tx.to.substring(0,14) : "Contract Creation"}`, true);
+                    });
+                }
             }
-        }
 
-        logMessage(blockMsg);
-        const mainBlockNumberDiv = document.getElementById('blockNumber');
-        if(mainBlockNumberDiv) mainBlockNumberDiv.innerHTML = `Current Block: #${blockNumber}`;
+            logMessage(blockMsg);
+            const mainBlockNumberDiv = document.getElementById('blockNumber');
+            if(mainBlockNumberDiv) mainBlockNumberDiv.innerHTML = `Current Block: #${blockNumber}`;
+        });
+
+    } catch (error) {
+        console.error("WebSocket connection failed:", error);
+        logMessage("🔌 WebSocket connection failed.");
+    }
+
+    // ----------------- ALL CERTIFICATES VIEW -----------------
+    loadCertificatesBtn.addEventListener('click', async () => {
+        if (!contract) return alert("Connect wallet first!");
+        allCertificatesList.innerHTML = "<p>Loading certificates...</p>";
+
+        try {
+            const count = await contract.getCertificateCount();
+            if (count.toNumber && count.toNumber() === 0) {
+                allCertificatesList.innerHTML = "<p>No certificates found.</p>";
+                return;
+            }
+            let myCertificatesHTML = "";
+
+            for (let i = 0; i < count; i++) {
+                const certId = await contract.certificateIdList(i);
+                const details = await contract.getCertificateDetails(certId);
+                const date = new Date(details[4] * 1000).toLocaleDateString();
+                const revokedStatus = details[5] ? '<strong class="error">(REVOKED)</strong>' : '<strong class="success">(VALID)</strong>';
+
+                // Each certificate summary includes a Show Details toggle and a Revoke button (if authorized)
+                myCertificatesHTML += `
+                    <div class="certificate-summary">
+                        <p><strong>Student:</strong> ${details[0]} | <strong>Course:</strong> ${details[1]} | ${revokedStatus}</p>
+                        <button class="showDetailsBtn" data-certid="${certId}">Show Details</button>
+                        ${isAuthorizedFlag ? `<button class="revokeCertBtn" data-certid="${certId}">Revoke Certificate</button>` : ''}
+                        <div class="certificate-full-details" id="details-${certId}" style="display:none; margin-top:8px;">
+                            <p><strong>Marks:</strong> ${details[2]}</p>
+                            <p><strong>Institution:</strong> ${details[3]}</p>
+                            <p><strong>Issued On:</strong> ${date}</p>
+                            <p><strong>Certificate ID:</strong> ${certId}</p>
+                        </div>
+                    </div>
+                    <hr>
+                `;
+            }
+
+            allCertificatesList.innerHTML = myCertificatesHTML;
+
+            // Add toggle behavior for details
+            document.querySelectorAll('.showDetailsBtn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const certId = btn.getAttribute('data-certid');
+                    const detailsDiv = document.getElementById(`details-${certId}`);
+                    if (!detailsDiv) return;
+                    if (detailsDiv.style.display === "none") {
+                        detailsDiv.style.display = "block";
+                        btn.textContent = "Hide Details";
+                    } else {
+                        detailsDiv.style.display = "none";
+                        btn.textContent = "Show Details";
+                    }
+                });
+            });
+
+            // Revoke certificate buttons (owner/authorized only)
+            document.querySelectorAll('.revokeCertBtn').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    const certId = btn.getAttribute('data-certid');
+                    if (!confirm(`Revoke certificate ${certId}?`)) return;
+                    try {
+                        const tx = await contract.revokeCertificate(certId);
+                        logMessage(`[Broadcasting] revokeCertificate tx ${tx.hash}`, true);
+                        await tx.wait();
+                        logMessage(`Certificate ${certId} revoked.`, true);
+                        // refresh list
+                        loadCertificatesBtn.click();
+                    } catch (err) {
+                        alert(`Error revoking: ${err.reason || err.message || ''}`);
+                    }
+                });
+            });
+
+        } catch (error) {
+            allCertificatesList.innerHTML = `<p class="error">Error loading certificates: ${error.reason || error.message || ''}</p>`;
+        }
     });
 
-} catch (error) {
-    console.error("WebSocket connection failed:", error);
-    logMessage("🔌 WebSocket connection failed.");
-}
+}); 
