@@ -5,7 +5,6 @@ const contractABI = [ { "inputs": [], "stateMutability": "nonpayable", "type": "
 window.addEventListener('load', async () => {
     let provider, signer, contract, owner, currentUserAddress;
     
-
     const connectButton = document.getElementById('connectButton');
     const statusDiv = document.getElementById('status');
     const blockNumberDiv = document.getElementById('blockNumber');
@@ -34,7 +33,6 @@ window.addEventListener('load', async () => {
             const isAuthorized = await contract.authorized(currentUserAddress);
             adminPanel.style.display = isOwner ? 'block' : 'none';
             issuePanel.style.display = isAuthorized ? 'block' : 'none';
-
         } catch (error) {
             statusDiv.innerHTML = "Connection failed. Please connect to MetaMask.";
             adminPanel.style.display = 'none';
@@ -128,7 +126,8 @@ function logMessage(message) {
 }
 
 try {
-    const wsProvider = new ethers.providers.WebSocketProvider("https://sepolia.infura.io/v3/5cb8eb30eaae446c81ab26a22e968dda"); 
+    // IMPORTANT: You need a WebSocket (WSS) URL from Infura/Alchemy for this to work on a live site.
+    const wsProvider = new ethers.providers.WebSocketProvider("YOUR_INFURA_OR_ALCHEMY_WEBSOCKET_URL"); 
     const wsContract = new ethers.Contract(contractAddress, contractABI, wsProvider);
     logMessage("📡 Listening for blockchain events...");
 
@@ -141,7 +140,8 @@ try {
     });
 
     wsProvider.on("block", async (blockNumber) => {
-        logMessage(`---\n✅ New Block Mined: #${blockNumber}`);
+        const block = await wsProvider.getBlock(blockNumber);
+        logMessage(`---\n✅ New Block Mined: #${block.number}\n   Hash: ${block.hash.substring(0,12)}...\n   Transactions: ${block.transactions.length}`);
     });
 
 } catch (error) {
