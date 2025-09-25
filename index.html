@@ -9,30 +9,22 @@
 <body>
     <div class="container">
         <header>
-            <h1>Course Certificate Verification </h1>
+            <h1>Certificate Verification dApp</h1>
             <nav>
-            <a href="index.html" class="active">Main dApp</a>
-            <a href="blocks.html">Block Explorer</a>
-</nav>
+                <a href="index.html" class="active">Main dApp</a>
+                <a href="blocks.html">Block Explorer</a>
+            </nav>
         </header>
         
         <section class="card">
             <h2>Connection Status</h2>
             <button id="connectButton">Connect to MetaMask</button>
             <p id="status">Not Connected</p>
+            <h3 id="blockNumber">Current Block: #--</h3>
         </section>
 
-        <section class="card">
-            <h2>Issue Certificate</h2>
-            <form id="issueForm">
-                <input type="text" id="studentName" placeholder="Student Name" required>
-                <input type="text" id="courseName" placeholder="Course Name" required>
-                <button type="submit">Issue Certificate</button>
-            </form>
-        </section>
-
-        <section class="card">
-            <h2>Admin Functions</h2>
+        <section class="card" id="adminPanel" style="display: none;">
+            <h2>⭐ Admin Panel</h2>
             <form id="authForm">
                 <h3>Grant Authority</h3>
                 <input type="text" id="authAddress" placeholder="Enter Address to Authorize" required>
@@ -45,26 +37,36 @@
                 <button type="submit">Revoke Certificate</button>
             </form>
         </section>
-        
-        <section class="card">
-            <h2>Verify Certificate by ID</h2>
-            <form id="verifyForm">
-                <input type="text" id="certificateId" placeholder="Certificate ID" required>
-                <button type="submit">Verify</button>
+
+        <section class="card" id="issuePanel" style="display: none;">
+            <h2>Issue Certificate</h2>
+            <form id="issueForm">
+                <input type="text" id="studentName" placeholder="Student Name" required>
+                <input type="text" id="courseName" placeholder="Course Name" required>
+                <input type="text" id="marks" placeholder="Marks or Grade (e.g., A+, 85%)" required>
+                <input type="text" id="issuingInstitution" placeholder="Issuing Institution" required>
+                <button type="submit">Issue Certificate</button>
             </form>
-            <p id="verifyResult"></p>
-        </section>
-         <section class="card">
-            <h2>All Issued Certificate IDs</h2>
-            <button id="listButton">Show All Certificates</button>
-            <ul id="certificateList"></ul>
         </section>
 
+        <section class="card">
+            <h2>Employer / Student Lookup</h2>
+            <p>Verify a certificate using the student's name and course name.</p>
+            <form id="lookupForm">
+                <input type="text" id="lookupStudentName" placeholder="Student's Full Name" required>
+                <input type="text" id="lookupCourseName" placeholder="Course Name" required>
+                <button type="submit">Find & Verify Certificate</button>
+            </form>
+            <div id="lookupResults" class="lookup-results"></div>
+        </section>
+        
+        <section class="card">
+            <h2>Real-Time Blockchain Activity Log</h2>
+            <div id="logContainer" class="terminal"></div>
+        </section>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
-
-
