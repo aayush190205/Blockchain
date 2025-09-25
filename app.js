@@ -156,24 +156,25 @@ window.addEventListener('load', async () => {
 
     // --------- FORM LISTENERS ----------
     // Issue Certificate
-    issueForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const studentName = document.getElementById('studentName').value;
-        const courseName = document.getElementById('courseName').value;
-        const marks = document.getElementById('marks').value;
-        const issuingInstitution = document.getElementById('issuingInstitution').value;
-        try {
-            statusDiv.innerHTML = `Issuing certificate...`;
-            logMessage(`---\n[Mempool Handling] Transaction submitted to Mempool...`);
-            const tx = await contract.issueCertificate(studentName, courseName, marks, issuingInstitution);
-            logMessage(`[Broadcasting] Transaction broadcasted with hash: ${tx.hash.substring(0,14)}...`);
-            await tx.wait();
-            statusDiv.innerHTML = `Certificate issued successfully!`;
-            issueForm.reset();
-        } catch (error) {
-            statusDiv.innerHTML = `Error: ${error.reason || "Transaction failed."}`;
-        }
-    });
+issueForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const studentName = document.getElementById('studentName').value;
+    const courseName = document.getElementById('courseName').value;
+    const marks = document.getElementById('marks').value;
+    const issuingInstitution = document.getElementById('issuingInstitution').value;
+    try {
+        statusDiv.innerHTML = `Issuing certificate...`;
+        logMessage(`---\n[Mempool Handling] Transaction submitted to Mempool...`);
+        const tx = await contract.issueCertificate(studentName, courseName, marks, issuingInstitution);
+        logMessage(`[Broadcasting] Transaction broadcasted with hash: ${tx.hash.substring(0,14)}...`);
+        await tx.wait();
+        statusDiv.innerHTML = `Certificate issued successfully! Transaction Hash: ${tx.hash}`;
+        logMessage(`✅ Certificate issued successfully! Transaction Hash: ${tx.hash}`, true);
+        issueForm.reset();
+    } catch (error) {
+        statusDiv.innerHTML = `Error: ${error.reason || "Transaction failed."}`;
+    }
+});
 
     // Grant Authority
     authForm.addEventListener('submit', async (e) => {
@@ -299,3 +300,60 @@ try {
     console.error("WebSocket connection failed:", error);
     logMessage("🔌 WebSocket connection failed.");
 }
+const loadCertificatesBtn = document.getElementById('loadCertificatesBtn');
+const allCertificatesList = document.getElementById('allCertificatesList');
+
+loadCertificatesBtn.addEventListener('click', async () => {
+    if (!contract || !currentUserAddress) return alert("Connect wallet first!");
+    allCertificatesList.innerHTML = "<p>Loading your certificates...</p>";
+
+    try {
+        const count = await contract.getCertificateCount();
+        let myCertificatesHTML = "";
+
+        for (let i = 0; i < count; i++) {
+            const certId = await contract.certificateIdList(i);
+            const details = await contract.getCertificateDetails(certId);
+
+            // Check if issued by current user (owner or authorized)
+            // Here we consider all certificates for simplicity. You can filter by student if needed.
+            const date = new Date(details[4] * 1000).toLocaleDateString();
+            const revokedStatus = details[5] ? '<strong class="error">(REVOKED)</strong>' : '<strong class="success">(VALID)</strong>';
+
+            myCertificatesHTML += `
+                <div class="certificate-summary">
+                    <p><strong>Student:</strong> ${details[0]} | <strong>Course:</strong> ${details[1]} | ${revokedStatus}</p>
+                    <button class="showDetailsBtn" data-certid="${certId}">Show Details</button>
+                    <div class="certificate-full-details" id="details-${certId}" style="display:none;">
+                        <p><strong>Marks:</strong> ${details[2]}</p>
+                        <p><strong>Institution:</strong> ${details[3]}</p>
+                        <p><strong>Issued On:</strong> ${date}</p>
+                        <p><strong>Certificate ID:</strong> ${certId}</p>
+                    </div>
+                </div>
+                <hr>
+            `;
+        }
+
+        allCertificatesList.innerHTML = myCertificatesHTML;
+
+        // Add toggle behavior for details
+        document.querySelectorAll('.showDetailsBtn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const certId = btn.getAttribute('data-certid');
+                const detailsDiv = document.getElementById(`details-${certId}`);
+                if (detailsDiv.style.display === "none") {
+                    detailsDiv.style.display = "block";
+                    btn.textContent = "Hide Details";
+                } else {
+                    detailsDiv.style.display = "none";
+                    btn.textContent = "Show Details";
+                }
+            });
+        });
+
+    } catch (error) {
+        allCertificatesList.innerHTML = `<p class="error">Error loading certificates.</p>`;
+    }
+});
+
