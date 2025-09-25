@@ -126,6 +126,8 @@ window.addEventListener('load', async () => {
 
     const loadCertificatesBtn = document.getElementById('loadCertificatesBtn');
     const allCertificatesList = document.getElementById('allCertificatesList');
+    issuePanel.style.display = 'block';
+
 
     async function updateConnectionStatus() {
         try {
@@ -423,3 +425,4 @@ try {
     console.error("WebSocket connection failed:", error);
     logMessage("🔌 WebSocket connection failed.");
 }
+
