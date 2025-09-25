@@ -23,29 +23,43 @@
             <h3 id="blockNumber">Current Block: #--</h3>
         </section>
 
-        <section class="card">
+        <section class="card" id="adminPanel" style="display: none;">
+            <h2>⭐ Admin Panel</h2>
+            <form id="authForm">
+                <h3>Grant Authority</h3>
+                <input type="text" id="authAddress" placeholder="Enter Address to Authorize" required>
+                <button type="submit">Grant Authority</button>
+            </form>
+            <hr>
+            <form id="revokeForm">
+                <h3>Revoke Certificate</h3>
+                <input type="text" id="revokeCertId" placeholder="Enter Certificate ID to Revoke" required>
+                <button type="submit">Revoke Certificate</button>
+            </form>
+        </section>
+
+        <section class="card" id="issuePanel" style="display: none;">
             <h2>Issue Certificate</h2>
             <form id="issueForm">
                 <input type="text" id="studentName" placeholder="Student Name" required>
                 <input type="text" id="courseName" placeholder="Course Name" required>
+                <input type="text" id="marks" placeholder="Marks or Grade (e.g., A+, 85%)" required>
+                <input type="text" id="issuingInstitution" placeholder="Issuing Institution" required>
                 <button type="submit">Issue Certificate</button>
             </form>
         </section>
-        
+
         <section class="card">
-            <h2>Verify Certificate</h2>
-            <form id="verifyForm">
-                <input type="text" id="certificateId" placeholder="Certificate ID" required>
-                <button type="submit">Verify</button>
+            <h2>Employer / Student Lookup</h2>
+            <p>Verify a certificate using the student's name and course name.</p>
+            <form id="lookupForm">
+                <input type="text" id="lookupStudentName" placeholder="Student's Full Name" required>
+                <input type="text" id="lookupCourseName" placeholder="Course Name" required>
+                <button type="submit">Find & Verify Certificate</button>
             </form>
+            <div id="lookupResults" class="lookup-results"></div>
         </section>
-
-        <section class="card">
-            <h2>All Issued Certificate IDs</h2>
-            <button id="listButton">Show All Certificates</button>
-            <ul id="certificateList"></ul>
-        </section>
-
+        
         <section class="card">
             <h2>Real-Time Blockchain Activity</h2>
             <div id="logContainer" class="terminal"></div>
