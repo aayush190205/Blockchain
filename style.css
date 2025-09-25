@@ -213,3 +213,24 @@ button:hover {
 .block-field { margin-top: 12px; }
 .field-label { font-weight: 600; color: var(--text-color); }
 .field-value { color: var(--subtle-text); word-wrap: break-word; font-family: monospace; }
+.lookup-results {
+    margin-top: 1.5em;
+}
+.certificate-details {
+    padding: 1em;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: #f6f8fa;
+}
+.certificate-details p {
+    margin: 0.5em 0;
+}
+.error {
+    color: var(--error-color);
+    font-weight: bold;
+}
+.success {
+    color: var(--success-color);
+    font-weight: bold;
+}
+
